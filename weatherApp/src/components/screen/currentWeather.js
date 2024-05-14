@@ -1,23 +1,31 @@
 import React from 'react';
 import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import RowText from '../../components/rowText';
 
 const CurrentWeather = () => {
+
+  const { wrapper, container, temp, feels, highLowWrapper, highLow, bodyWrapper, description, msg } = styles;
+
   return (
-    <SafeAreaView style={styles.wrapper}>
-      <View style={styles.container}>
+    <SafeAreaView style={wrapper}>
+      <View style={container}>
         <Feather name="sun" size={100} color="black" />
-        <Text style={styles.temp}>6</Text>
-        <Text style={styles.feels}>Feels like 5</Text>
-        <View style={styles.highLowWrapper}>
-          <Text style={styles.highLow}>High: 8</Text>
-          <Text style={styles.highLow}>Low: 6</Text>
-        </View>
+        <Text style={temp}>6</Text>
+        <Text style={feels}>Feels like 5</Text>
+        <RowText
+          container={highLow}
+          msgOne={'High: 8'}
+          msgTwo={'Low: 6'}
+          msgOneStyle={highLow}
+          msgTwoStyle={highLow} />
       </View>
-      <View style={styles.bodyWrapper}>
-        <Text style={styles.description}>It's Sunny</Text>
-        <Text style={styles.msg}>It's perfect T-shirt weather</Text>
-      </View>
+      <RowText
+        container={bodyWrapper}
+        msgOne={'It is Sunny'}
+        msgTwo={'It is perfect T-shirt weather'}
+        msgOneStyle={description}
+        msgTwoStyle={msg} />
     </SafeAreaView>
   )
 }
@@ -57,7 +65,7 @@ const styles = StyleSheet.create({
     fontSize: 48
   },
   msg: {
-    fontSize: 30
+    fontSize: 25
   }
 });
 
