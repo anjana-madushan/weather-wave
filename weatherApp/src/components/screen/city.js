@@ -1,22 +1,24 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet, View, Text, ImageBackground, StatusBar } from 'react-native';
 import IconText from '../../components/iconText';
+import moment from 'moment';
 
-const City = () => {
+const City = ({ weatherData }) => {
 
-  const { container, city, cityText, country, image, riseSetText, rowLayout, riseSetWrapper, populationText, populationWrapper } = styles;
+  const { name, country, population, sunrise, sunset } = weatherData;
+  const { container, city, cityText, countryStyle, image, riseSetText, rowLayout, riseSetWrapper, populationText, populationWrapper } = styles;
 
   return (
     <SafeAreaView style={container}>
       <ImageBackground source={require('../../../assets/images/city.jpg')} style={image}>
-        <Text style={[city, cityText]}>London</Text>
-        <Text style={[country, cityText]}>UK</Text>
+        <Text style={[city, cityText]}>{name}</Text>
+        <Text style={[countryStyle, cityText]}>{country}</Text>
         <View style={[populationWrapper, rowLayout]}>
-          <IconText iconName={'user'} iconColor={'green'} bodyText={'8000'} bodyTextStyles={populationText} />
+          <IconText iconName={'user'} iconColor={'green'} bodyText={`Population: ${population}`} bodyTextStyles={populationText} />
         </View>
         <View style={[riseSetWrapper, rowLayout]}>
-          <IconText iconName={'sunrise'} iconColor={'red'} bodyText={'10:46:57 AM'} bodyTextStyles={riseSetText} />
-          <IconText iconName={'sunset'} iconColor={'red'} bodyText={'15:56:42 PM'} bodyTextStyles={riseSetText} />
+          <IconText iconName={'sunrise'} iconColor={'red'} bodyText={moment(sunrise).format('h:mm:ss a')} bodyTextStyles={riseSetText} />
+          <IconText iconName={'sunset'} iconColor={'red'} bodyText={moment(sunset).format('h:mm:ss a')} bodyTextStyles={riseSetText} />
         </View>
       </ImageBackground>
     </SafeAreaView>
@@ -26,7 +28,8 @@ const City = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
+    // marginTop: StatusBar.currentHeight || 0,
+    marginTop: 0
   },
   image: {
     flex: 1
@@ -34,7 +37,7 @@ const styles = StyleSheet.create({
   city: {
     fontSize: 40,
   },
-  country: {
+  countryStyle: {
     fontSize: 30,
   },
   cityText: {

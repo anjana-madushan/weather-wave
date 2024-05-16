@@ -1,15 +1,14 @@
 import { useState, useEffect } from 'react';
 import * as Location from 'expo-location';
+import { WEATHER_API_KEY } from '@env';
 
 export const UseGetWeather = () => {
 
-  const WEATHER_API_KEY = '76b72827244bdf30c1a13fb1f3c03e48'
-
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [error, setError] = useState(null);
   const [weather, setWeather] = useState([]);
-  const [lat, setLat] = useState(0);
-  const [lon, setLon] = useState(0);
+  const [lat, setLat] = useState([]);
+  const [lon, setLon] = useState([]);
 
   const FetchWeatherData = async () => {
     try {
@@ -37,5 +36,6 @@ export const UseGetWeather = () => {
       await FetchWeatherData();
     })()
   }, [lat, lon])
+
   return [loading, error, weather];
 }
