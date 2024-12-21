@@ -1,0 +1,1 @@
+A React Native weather app that provides real-time weather updates for any location. Features include current temperature, weather conditions, and a 5-day forecast. Built with modern APIs for accurate data and a responsive interface, this app ensures seamless functionality across Android and iOS platforms. Easy to customize and deplo
